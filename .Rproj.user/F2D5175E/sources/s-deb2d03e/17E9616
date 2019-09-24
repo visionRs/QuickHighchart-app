@@ -1,0 +1,26 @@
+{
+    "collab_server" : "",
+    "contents" : "",
+    "created" : 1569355475945.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "2357414217",
+    "id" : "17E9616",
+    "lastKnownWriteTime" : 1569355489,
+    "last_content_update" : 1569355489771,
+    "path" : "~/working_dir/projects/QuickHighChart/Modules/style.css",
+    "project_path" : "Modules/style.css",
+    "properties" : {
+        "cursorPosition" : "108,1",
+        "scrollLine" : "76",
+        "tempName" : "Untitled1"
+    },
+    "read_only" : false,
+    "read_only_alternatives" : [
+    ],
+    "relative_order" : 8,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "css"
+}

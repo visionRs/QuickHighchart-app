@@ -1,0 +1,26 @@
+{
+    "collab_server" : "",
+    "contents" : "",
+    "created" : 1569350868277.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "0",
+    "id" : "9ADD8BFC",
+    "lastKnownWriteTime" : 1569354856,
+    "last_content_update" : 1569354856780,
+    "path" : "~/working_dir/projects/QuickHighChart/Modules/layoutAddin.R",
+    "project_path" : "Modules/layoutAddin.R",
+    "properties" : {
+        "cursorPosition" : "4,10",
+        "scrollLine" : "0",
+        "tempName" : "Untitled1"
+    },
+    "read_only" : false,
+    "read_only_alternatives" : [
+    ],
+    "relative_order" : 4,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_source"
+}

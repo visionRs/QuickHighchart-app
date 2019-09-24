@@ -1,0 +1,26 @@
+{
+    "collab_server" : "",
+    "contents" : "",
+    "created" : 1569350535073.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "2262234328",
+    "id" : "F725F4B4",
+    "lastKnownWriteTime" : 1569353491,
+    "last_content_update" : 1569353491891,
+    "path" : "~/working_dir/projects/QuickHighChart/Modules/chooseDataUI.R",
+    "project_path" : "Modules/chooseDataUI.R",
+    "properties" : {
+        "cursorPosition" : "7,10",
+        "scrollLine" : "0",
+        "tempName" : "Untitled1"
+    },
+    "read_only" : false,
+    "read_only_alternatives" : [
+    ],
+    "relative_order" : 2,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_source"
+}

@@ -1,0 +1,26 @@
+{
+    "collab_server" : "",
+    "contents" : "",
+    "created" : 1569345880193.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "3293219298",
+    "id" : "2B80041B",
+    "lastKnownWriteTime" : 1569355800,
+    "last_content_update" : 1569355800207,
+    "path" : "~/working_dir/projects/QuickHighChart/Modules/UI.R",
+    "project_path" : "Modules/UI.R",
+    "properties" : {
+        "cursorPosition" : "39,93",
+        "scrollLine" : "27",
+        "tempName" : "Untitled1"
+    },
+    "read_only" : false,
+    "read_only_alternatives" : [
+    ],
+    "relative_order" : 1,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_source"
+}
