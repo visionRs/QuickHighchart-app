@@ -1,6 +1,7 @@
 source('~/working_dir/projects/QuickHighChart/Modules/UI.R', echo=TRUE)
 source('~/working_dir/projects/QuickHighChart/Modules/chooseDataUI.R', echo=TRUE)
 source('~/working_dir/projects/QuickHighChart/Modules/layoutAddin.R', echo=TRUE)
+source('~/working_dir/projects/QuickHighChart/Modules/visionRContainer.R', echo=TRUE)
 source('~/working_dir/projects/QuickHighChart/Modules/optionUI.R', echo=TRUE)
 library(shiny)
 library(shinyWidgets)

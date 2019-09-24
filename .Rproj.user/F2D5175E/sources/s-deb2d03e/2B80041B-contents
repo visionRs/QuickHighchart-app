@@ -22,9 +22,10 @@ UI <- function( id,
   )
   
   addin <- miniPage(
-    singleton(x = tagList(
-      tags$link(rel="stylesheet", type="text/css", href="esquisse/styles.css")
-    )),
+    includeCSS("/home/rupatel/working_dir/projects/QuickHighChart/Modules/style.css"),
+    # singleton(x = tagList(
+    #   tags$link(rel="stylesheet", type="text/css", href="/home/rupatel/working_dir/projects/QuickHighChart/Modules/style.css")
+    # )),
     box_title,
     # page
     layoutAddin(

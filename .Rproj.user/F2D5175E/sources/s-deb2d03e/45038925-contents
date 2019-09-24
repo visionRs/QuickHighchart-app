@@ -1,4 +1,4 @@
-visionRContainer <- function(width = "100%", height = "700px", fixed = FALSE) {
+visionRContainer <- function(width = "100%", height = "735px", fixed = FALSE) {
   force(width)
   force(height)
   force(fixed)
