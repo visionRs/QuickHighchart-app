@@ -1,9 +1,9 @@
-.dreamrs-title-box {
-  background-color: rgb(16, 34, 70);
+.visionR-title-box {
+  background-color: #499dd1;
   height: 45px;
 }
 
-.dreamrs-title {
+.visionR-title {
   color: white;
   text-align: center;
   font-size: 30px;
@@ -11,25 +11,45 @@
 }
 
 
+.btn-danger {
+    background-color: black;
+    border-color: black;
+}
 
+
+.btn-danger.active, .btn-danger:active, .open>.dropdown-toggle.btn-danger {
+    color: #fff;
+    background-color: black;
+    border-color: black;
+}
+
+
+.btn-danger.focus, .btn-danger:focus {
+    color: #fff;
+    background-color: #444;
+    border-color: #761c19;
+}
 
 .btn-group-justified-charter {
   display: table !important;
   width: 100%;
   table-layout: fixed;
   border-collapse: separate;
+    background-color:#282c2f;
 }
 
 .btn-group-charter {
   position: relative;
   /*display: inline-block;*/
     vertical-align: middle;
+    background-color:#282c2f;
 }
 
 .btn-group-justified-charter>.btn-group-charter {
   display: table-cell;
   float: none;
-  width: 1%;
+  width: 100%;
+  
 }
 
 
@@ -107,3 +127,6 @@ text-align: center !important;
 .drop-input, .drop-input-main {
   height: 100%;
 }
+
+
+

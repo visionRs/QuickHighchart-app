@@ -9,7 +9,7 @@ UI <- function( id,
   
   box_title <- tags$div(
     class="gadget-title visionR-title-box",
-    tags$h1(shiny::icon("wrench"), "Highchart builder", class = "visionR-title"),
+    tags$h1(shiny::icon("drafting-compass"), "Highchart Builder", class = "visionR-title"),
     tags$div(
       class = "pull-right",
       miniTitleBarButton(inputId = ns("close"), label = "Close")
@@ -21,14 +21,14 @@ UI <- function( id,
     
   )
   
-  addin <- miniPage(
+  output <- miniPage(
     includeCSS("/home/rupatel/working_dir/projects/QuickHighChart/Modules/style.css"),
     # singleton(x = tagList(
     #   tags$link(rel="stylesheet", type="text/css", href="/home/rupatel/working_dir/projects/QuickHighChart/Modules/style.css")
     # )),
     box_title,
     # page
-    layoutAddin(
+    layout(
      top =   actionGroupButtons(
         inputIds = c("Bar", "Histogram", "Scatter", "Line","Box"),
         labels = list("Bar", "Histogram", "Scatter","Line","Box"),
@@ -52,7 +52,7 @@ UI <- function( id,
   )
   
   if (is.function(container)) {
-    addin <- container(addin)
+    output <- container(output)
   }
-  return(addin)
+  return(output)
 }

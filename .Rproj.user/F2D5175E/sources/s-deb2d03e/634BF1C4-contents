@@ -26,5 +26,4 @@ server <- function(input, output, session) {
   
 }
 
-shinyApp(ui, server)
 runGadget(app=ui,server = server,viewer = dialogViewer('test',width=1000,height=750))

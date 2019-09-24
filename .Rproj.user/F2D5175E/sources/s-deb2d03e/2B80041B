@@ -7,13 +7,13 @@
     "folds" : "",
     "hash" : "0",
     "id" : "2B80041B",
-    "lastKnownWriteTime" : 1569356466,
-    "last_content_update" : 1569356466291,
+    "lastKnownWriteTime" : 1569357132,
+    "last_content_update" : 1569357132149,
     "path" : "~/working_dir/projects/QuickHighChart/Modules/UI.R",
     "project_path" : "Modules/UI.R",
     "properties" : {
-        "cursorPosition" : "24,4",
-        "scrollLine" : "0",
+        "cursorPosition" : "34,24",
+        "scrollLine" : "28",
         "tempName" : "Untitled1"
     },
     "read_only" : false,

@@ -1,4 +1,4 @@
-layoutAddin <- function( top, main) {
+layout <- function( top, main) {
   shiny::fillPage(
     shiny::fillCol(
       flex = c(1, 4),
