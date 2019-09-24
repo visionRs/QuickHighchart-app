@@ -1,5 +1,5 @@
 .visionR-title-box {
-  background-color: #499dd1;
+  background-color: #1a608f;
   height: 45px;
 }
 
@@ -12,24 +12,24 @@
 
 
 .btn-danger {
-    background-color: black;
-    border-color: black;
+    background-color: #444444;
+    border-color: #444444;
 }
 
 
 .btn-danger.active, .btn-danger:active, .open>.dropdown-toggle.btn-danger {
     color: #fff;
-    background-color: black;
-    border-color: black;
+    background-color: #444444;
+    border-color: #444444;
 }
 
 .btn-danger:hover{
-  background-color: #499dd1;
+  background-color: #1a608f;
 }
 
 .btn-danger.focus, .btn-danger:focus {
     color: #fff;
-    background-color: #444;
+    background-color: ##444444;
     border-color: #761c19;
 }
 
