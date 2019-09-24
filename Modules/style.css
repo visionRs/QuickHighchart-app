@@ -29,7 +29,7 @@
 
 .btn-danger.focus, .btn-danger:focus {
     color: #fff;
-    background-color: ##444444;
+    background-color: #444444;
     border-color: #761c19;
 }
 
@@ -52,12 +52,16 @@
   display: table-cell;
   float: none;
   width: 100%;
+  color: #fff;
+    background-color: #444444;
   
 }
 
 
 .btn-group-justified-charter>.btn-group-charter .btn-charter {
   width: 100%;
+  color: #fff;
+    background-color: #444444;
 }
 
 .btn-controls {

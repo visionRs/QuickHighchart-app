@@ -7,13 +7,13 @@
     "folds" : "",
     "hash" : "0",
     "id" : "17E9616",
-    "lastKnownWriteTime" : 1569358168,
-    "last_content_update" : 1569358168358,
+    "lastKnownWriteTime" : 1569358340,
+    "last_content_update" : 1569358340806,
     "path" : "~/working_dir/projects/QuickHighChart/Modules/style.css",
     "project_path" : "Modules/style.css",
     "properties" : {
-        "cursorPosition" : "26,27",
-        "scrollLine" : "0",
+        "cursorPosition" : "63,30",
+        "scrollLine" : "44",
         "tempName" : "Untitled1"
     },
     "read_only" : false,
