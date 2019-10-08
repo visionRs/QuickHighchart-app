@@ -1,4 +1,0 @@
-Server <- function(input, output, session, data = NULL) {
-  
- 
-}

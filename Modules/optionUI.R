@@ -11,7 +11,16 @@ optionUI <- function(id, insert_code = FALSE, disable_filters = FALSE) {
       "sw-content-filterdrop"
     )),
     dropdown(
-      #controls_labs(ns),
+      xy_options(ns),
+      inputId = "xy_labels",
+      style = "default",
+      label = "Select X-Y Axes", 
+      up = TRUE, 
+      icon = icon("font"), 
+      status = "default btn-controls"
+    ),
+    dropdown(
+      aesthetics_options(ns),
       inputId = "Aesthetics",
       style = "default",
       label = "Aesthetics", 
@@ -20,7 +29,7 @@ optionUI <- function(id, insert_code = FALSE, disable_filters = FALSE) {
       status = "default btn-controls"
     ),
     dropdown(
-      #controls_params(ns), controls_appearance(ns),
+      plot_options(ns),
       style = "default",
       label = "Plot options",
       up = TRUE, 
@@ -29,7 +38,7 @@ optionUI <- function(id, insert_code = FALSE, disable_filters = FALSE) {
       status = "default btn-controls"
     ),
     dropdown(
-      #controls_code(ns, insert_code = insert_code), 
+      code_options(ns, insert_code = insert_code), 
       style = "default", 
       label = "Code Options", 
       up = TRUE,
