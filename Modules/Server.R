@@ -39,6 +39,53 @@ Server <- function(input, output, session, data = NULL, dataModule = c("GlobalEn
                     choices =var_choices
   )
   
+  
+  observeEvent(c(input$x_label,input$y_label), {
+    dt <- dataChart$data
+    
+    if((!is.numeric(dt[[input$x_label]]) & !is.numeric(dt[[input$y_label]])) | (is.null(dt[[input$x_label]]) & is.null(dt[[input$y_label]])) | is.null(dt[[input$x_label]])){
+      shinyjs::disable("Bar")
+      shinyjs::disable("Histogram")
+      shinyjs::disable("Scatter")
+      shinyjs::disable("Line")
+      shinyjs::disable("Box")
+      
+      
+    } else if((is.null(dt[[input$y_label]]) & is.numeric(dt[[input$x_label]]))) {
+      
+      shinyjs::disable("Bar")
+      shinyjs::disable("Scatter")
+      shinyjs::disable("Line")
+      shinyjs::disable("Box")
+      shinyjs::enable("Histogram")
+      
+      
+    } else if(!is.numeric(dt[[input$x_label]]) | !is.numeric(dt[[input$y_label]])) {
+      
+      shinyjs::enable("Bar")
+      shinyjs::disable("Scatter")
+      shinyjs::enable("Line")
+      shinyjs::disable("Histogram")
+      shinyjs::enable("Box")
+      
+      
+    } else {
+      
+      shinyjs::enable("Bar")
+      shinyjs::enable("Scatter")
+      shinyjs::enable("Line")
+      shinyjs::enable("Box")
+      shinyjs::disable("Histogram")
+      
+    }
+    
+    # update textInputs for renaming axes
+    # updateTextInput(session = session,inputId = "titleX", value = input$x_label)
+    # updateTextInput(session = session,inputId = "titleY", value = input$y_label)
+  })
+  
+  
+  
   output$code <- renderUI({
     code <- ggplot_rv$code
     code <- stri_replace_all(str = code, replacement = "+\n", fixed = "+")

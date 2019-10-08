@@ -8,12 +8,12 @@ library(shiny)
 library(shinyWidgets)
 library(miniUI)
 library(ggplot2)
-library(esquisse)
-
+library(shinyjs)
 ui <- fluidPage(
 
   # Force scroll bar to appear (otherwise hidden by esquisse)
-
+  shinyjs::useShinyjs(),
+  
     UI(
       id = "test", 
       choose_data = T # dont display button to change data

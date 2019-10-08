@@ -30,7 +30,7 @@ UI <- function( id,
     # page
     layout(
      top =   actionGroupButtons(
-        inputIds = c("Bar", "Histogram", "Scatter", "Line","Box"),
+        inputIds = c(ns("Bar"), ns("Histogram"), ns("Scatter"), ns("Line"),ns("Box")),
         labels = list("Bar", "Histogram", "Scatter","Line","Box"),
         status = "danger",
         fullwidth = T
@@ -93,7 +93,8 @@ UI <- function( id,
       # Aesthetics DropUp options ------
       
       dropdown(
-    
+        
+        
         #aesthetics_options(ns),
         inputId = "Aesthetics",
         style = "default",
@@ -105,6 +106,8 @@ UI <- function( id,
       dropdown(
         #plot_options(ns),
        
+        
+        
         tagList(
           tags$div(
             id = ns("controls-spectrum"), style = "display: block;",
@@ -198,13 +201,14 @@ UI <- function( id,
         inputId = "codedrop",
         icon = icon("code"), 
         status = "default btn-controls"
-      ),   
+      ),
       tags$script("$('.sw-dropdown').addClass('btn-group-charter');"),
       tags$script(HTML("$('.sw-dropdown > .btn').addClass('btn-charter');")),
       tags$script("$('#sw-content-codedrop').css('min-width', '350px');"),
       tags$script("$('#sw-content-paramsdrop').css('min-width', '330px');")
     )
     
+   
   )
   
   if (is.function(container)) {
