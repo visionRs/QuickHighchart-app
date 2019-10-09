@@ -80,16 +80,16 @@ bar_plot <- function(data=NULL,
   
   ##Legend Options
   
-  legend_mapping <- list( align = legendPos,
-                          verticalAlign = legendVerticalAlign,
-                          layout = legendLayout, 
-                          x = legendx,
-                          y = legendy)
-  legend_mapping <- legend_mapping[!vapply(legend_mapping, is.null, FUN.VALUE = logical(1))]
-  legend_mapping <- expr(hcaes(!!!syms2(legend_mapping)))
-  
-  
-  hccall <- expr(!!hccall %>% !!legend_mapping)
+  # legend_mapping <- list( align = legendPos,
+  #                         verticalAlign = legendVerticalAlign,
+  #                         layout = legendLayout, 
+  #                         x = legendx,
+  #                         y = legendy)
+  # legend_mapping <- legend_mapping[!vapply(legend_mapping, is.null, FUN.VALUE = logical(1))]
+  # legend_mapping <- expr(hcaes(!!!syms2(legend_mapping)))
+  # 
+  # 
+  # hccall <- expr(!!hccall %>% !!legend_mapping)
   
 
   if (!is.null(theme)) {
