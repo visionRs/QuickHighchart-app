@@ -23,124 +23,53 @@ bar_plot <- function(data=NULL,
                      df_name=NULL,
                      x=NULL,
                      y=NULL,
-                     colorby='None',
-                     Theme=NULL,
-                     fontSize=10,
-                     legendPos='right',
-                     title_x='',
-                     title_y='',
-                     colourfill='#2219CCCC',
-                     plotTitle='',
-                     facetRow,
-                     facetCol,
-                     hideAxis,
-                     axisAngle=90,
-                     position='',
-                     coorflip=FALSE,
-                     interactive) {
+                     theme=NULL
+                     ) {
   
   
-  p <-
-    {if(colorby == 'None'){ggplot(data,aes_string(x, y, fill =shQuote("None")))}
-      else {ggplot(data,aes_string(x, y, fill = colorby )) }
-    }+
-    geom_bar(stat="identity" , position = position) + #if(position=='') {} else { paste0(',', position = position)} ) +
-    eval(parse(text=as.character(Theme))) +
-    labs(title = plotTitle) +
-    xlab(title_x) + ylab(title_y) +
-    {if(coorflip) { coord_flip() } } +
-    {if(colorby=='None') { scale_fill_manual(values = colourfill) } } +
-    {if(facetRow != 'None' & facetCol != 'None'){facet_grid(as.formula(paste0(facetRow, "~", facetCol)))}
-      else if(facetRow != 'None' & facetCol == 'None'){facet_grid(as.formula(paste0(facetRow, "~ .")))}
-      else if(facetRow == 'None' & facetCol != 'None'){facet_grid(as.formula(paste0(". ~", facetCol)))}
-    } +
-    theme(axis.text = element_text(size = fontSize),
-          axis.title.x = element_text(size = fontSize),
-          axis.title.y = element_text(size = fontSize),
-          plot.title = element_text(size = fontSize),
-          legend.position = if (colorby=='None') 'none' else legendPos,
-          axis.text.x = if(hideAxis==TRUE) element_blank() else element_text(angle =axisAngle,hjust = 1))
+  if (is.null(data))
+    return(expr(hchart()))
   
   
-  # if(colorby=='None'){
-  #
-  #   p <- p + scale_fill_manual(values = colourfill)
-  # }
-  #
+  mapping <- list(x=x,y=y)
   
   
-  code <-HTML(paste0('<pre>ggplot(data = ',df_name, ' , aes(x=', x, ', y=', y, ifelse(colorby=="None",")) + <br> ",paste0(',' ,'fill = ',colorby, ')) + <br>')),
-                     paste0('geom_bar(stat="identity" , position = ',shQuote(position)), ifelse(colorby=="None",paste0(', fill =',shQuote(colourfill), ') + <br>'), ') + <br>'),
-                     paste0(ifelse(Theme=="NULL" | is.null(Theme),'',paste0('&ensp;',Theme,'+ <br>'))),
-                     ifelse(plotTitle=='' | is.null(plotTitle),'',paste0('&ensp; labs(title = ','"',plotTitle,'"',') + <br>')),
-                     ifelse(title_x=='' | is.null(title_x),'',paste0(' xlab(','"',title_x,'"',') + <br>')),
-                     ifelse(title_y=='' | is.null(title_y),'',paste0(' ylab(','"',title_y,'"',') ')),
-                     ifelse(fontSize==10 & legendPos == 'right' , paste0(' + <br> theme(axis.text.x = ', ifelse(hideAxis, 'element_blank())  <br>', paste0('element_text(angle = ', axisAngle, ', hjust = 1)) <br>'))),
-                            paste0(paste0('+ <br> theme(axis.text = element_text(size = ', fontSize,'), <br>'),
-                                   paste0(' &emsp; &emsp; &emsp; axis.title.x = element_text(size = ', fontSize,'),<br>'),
-                                   paste0(' &emsp; &emsp; &emsp; axis.title.y = element_text(size = ', fontSize,'),<br>'),
-                                   paste0(' &emsp; &emsp; &emsp; plot.title = element_text(size = ',fontSize,'),<br>'),
-                                   paste0(' &emsp; &emsp; &emsp; legend.position = ','"',legendPos,'"',', <br>'),
-                                   paste0(' &emsp; &emsp; &emsp; axis.text.x = ', ifelse(hideAxis, 'element_blank())', paste0('element_text(angle = ', axisAngle, ', hjust = 1))')))
-                                   
-                            )
-                            
-                     ),
-                     ifelse(facetRow != 'None' & facetCol != 'None',paste0(" + <br> facet_grid(",as.formula(paste0(facetRow, "~", facetCol)),") " ),''),
-                     ifelse(facetRow != 'None' & facetCol == 'None',paste0('+ <br> facet_grid(',facetRow,' ~ .) '),'' ),
-                     ifelse(facetRow == 'None' & facetCol != 'None',paste0('+ <br> facet_grid(. ~ ',facetCol,') ') ,''),
-                     ifelse(coorflip==TRUE, paste0('+ <br> coord_flip()'),paste0('')),
-                     ifelse(interactive == TRUE, paste0(' %>% ggplotly()'), paste0('')),
-                     '</pre>'))
+  if (rlang::is_call(mapping)) 
+    mapping <- eval(mapping)
+  
+  mapping <- mapping[!vapply(mapping, is.null, FUN.VALUE = logical(1))]
+
+  syms2 <- function(x) {
+    lapply(
+      X = x,
+      FUN = function(y) {
+        if (inherits(y, "AsIs")) {
+          as.character(y)
+        } else {
+          sym(as_name(y))
+        }
+      }
+    )
+  }
+  
+  hcaes_mappings <- expr(hcaes(!!!syms2(mapping)))
+  
+  df_name <- expr(!!sym(df_name) )
   
   
-  # # facet
-  # if(facetRow != 'None' & facetCol != 'None'){
-  #   p <-  p + facet_grid(as.formula(paste0(facetRow, "~", facetCol)))
-  #   #code <- paste0(code,'+ facet_grid(',facetRow,' ~ ',facetCol,')')
-  # }
-  # if(facetRow != 'None' & facetCol == 'None'){
-  #   p <-  p + facet_grid(as.formula(paste0(facetRow, "~ .")))
-  #  # code <- paste0(code,'+ facet_grid(',facetRow,' ~ .)')
-  # }
-  # if(facetRow == 'None' & facetCol != 'None'){
-  #   p <-  p + facet_grid(as.formula(paste0(". ~", facetCol)))
-  #   #code <- paste0(code,'+ facet_grid(. ~ ',facetCol,')')
-  # }
-  #
-  
-  #p <- p + ifelse(hideAxis==TRUE, theme(axis.text.x =element_blank()), theme(axis.text.x=element_text(angle = axisAngle, hjust = 1)))
-  #code <- paste0(code, " + " ,ifelse(hideAxis==TRUE, 'theme(axis.text.x =element_blank())', 'theme(axis.text.x=element_text(angle = axisAngle, hjust = 1))'))
-  # if(hideAxis == TRUE ){
-  #   p <-  p + theme(axis.text.x = element_blank())
-  #   code <- paste0(code, '+ theme(axis.text.x = element_blank())',hideAxis)
-  # } else if (axisAngle > 0 & hideAxis==FALSE) {
-  #
-  #   p <-  p + theme(axis.text.x = element_text(angle = axisAngle, hjust = 1))
-  #   code <- paste0(code, '+ theme(axis.text.x = element_text(angle = ', axisAngle, ', hjust = 1))')
-  # }
-  
-  # if(axisAngle > 0){
-  #   p <-  p + theme(axis.text.x = element_text(angle = axisAngle, hjust = 1))
-  #   code <- paste0(code, '+ theme(axis.text.x = element_text(angle = ', axisAngle, ', hjust = 1))')
-  # }
-  #
-  
-  # if(hideAxis == TRUE){
-  #   p <-  p + theme(axis.text.x = element_blank())
-  #   #code <- paste0(code, '+ theme(axis.text.x = element_blank())')
-  # } else{
-  #   if(axisAngle > 0){
-  #     p <-  p + theme(axis.text.x = element_text(angle = axisAngle, hjust = 1))
-  #    # code <- paste0(code, '+ theme(axis.text.x = element_text(angle = ', axisAngle, ', hjust = 1))')
-  #   }
-  # }
-  #
+  hccall <- expr(hchart(. , type='bar' , !!hcaes_mappings))
+  hccall <- expr(!!df_name %>% !!hccall)
   
   
-  ls <- list()
-  ls[['plot']] <- p
-  ls[['code']] <- code
-  return(ls)
+  if (!is.null(theme)) {
+    theme <- tolower(theme)
+    theme <- paste0("hc_theme_",theme)
+    theme <- expr(hc_add_theme((!!sym(theme))()))
+    hccall <- expr(!!hccall %>% !!theme)
+ 
+    
+  }
+ 
+  return(hccall)
   
 } #function ends here

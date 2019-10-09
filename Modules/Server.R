@@ -85,9 +85,35 @@ Server <- function(input, output, session, data = NULL, dataModule = c("GlobalEn
   })
   
   
+  })
+  #4 PLOTS CODE: -------------
+  
+  list_both <- reactiveValues(code = NULL)
+  
+  
+  #___4.0 PLOTS CODE: Bar Plot Code-----------------
+  observeEvent(input$Bar,{
+    
+   
+    #______4.0.1 GGPLOT Code--------------------
+    
+    list_both$code <- bar_plot(data = dataChart$data,
+                               df_name = dataChart$name,
+                               x=input$x_label,
+                               y=input$y_label,
+                               theme = input$theme#if(input$theme=='None'){"NULL"} else{input$theme}
+                              
+    )
+    print(list_both$code)
+    
+    
+  })
+  
+  
+  
   
   output$code <- renderUI({
-    code <- ggplot_rv$code
+    code <- list_both$code
     code <- stri_replace_all(str = code, replacement = "+\n", fixed = "+")
     if (!is.null(output_filter$code$expr)) {
       code_dplyr <- deparse(output_filter$code$dplyr, width.cutoff = 80L)
@@ -103,20 +129,9 @@ Server <- function(input, output, session, data = NULL, dataModule = c("GlobalEn
   })
   
   
-  output$plot <- renderPlot({
+  output$plot <- renderHighchart({
     
-    ggplot(data = dataChart$data , aes(x=Sepal.Length, y=Petal.Length,fill = Species)) + 
-      geom_bar(stat="identity" , position = 'stack') +  labs(title = "skjd") + 
-      xlab("ksadj") +  ylab("ksajd") + 
-      theme(axis.text = element_text(size = 7),     
-            axis.title.x = element_text(size = 7),
-            axis.title.y = element_text(size = 7),
-            plot.title = element_text(size = 7),
-            legend.position = "right",
-            axis.text.x = element_text(angle = 0, hjust = 1)) +
-      coord_flip()
-    
-  })
+    rlang::eval_tidy(list_both$code)
   
   })
   

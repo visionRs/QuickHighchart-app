@@ -40,7 +40,7 @@ UI <- function( id,
      #   tags$div(
      #     style = "position: absolute; right: 0; top: 10px; font-weight: bold; z-index: 1000;"
      #   ),
-       shiny::plotOutput(outputId = ns("plot"), width = "100%", height = "100%")
+       highcharter::highchartOutput(outputId = ns("plot"), width = "100%", height = "100%")
      # )
     ),
     
@@ -122,15 +122,15 @@ UI <- function( id,
           pickerInput(
             inputId = ns("theme"),
             label = "X Axes Input:",
-            choices = list(
-              'Fivethirtyeight', 'Economist' ,'Financial Times',
-              'Dotabuff' ,'Flat','Simple',
-              'Elementary','Google','Firefox','Monokai',
-              'Tufte','Sparkline',
-              'Grid Light', 'Sand Signika' ,'Dark Unica' , 
-              'Chalk' , 'Hand Drawn' 
-            ),
-            selected = "minimal",
+            choices = list('538','flat'),
+              # list(
+              # 'Fivethirtyeight', 'Economist' ,'Financial Times',
+              # 'Dotabuff' ,'Flat','Simple',
+              # 'Elementary','Google','Firefox','Monokai',
+              # 'Tufte','Sparkline',
+              # 'Grid Light', 'Sand Signika' ,'Dark Unica' , 
+              # 'Chalk' , 'Hand Drawn' ,'None'),
+            selected = 'None',
             options = list(size = 10),
             width = "100%"
           ),
