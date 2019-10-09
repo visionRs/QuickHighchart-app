@@ -32,9 +32,12 @@ bar_plot <- function(data=NULL,
   if (is.null(data))
     return(expr(hchart()))
   
-  
+  if(group=='None'){
+    mapping <- list(x=x,y=y)
+    
+  } else {
   mapping <- list(x=x,y=y,group=group)
-  
+  }
   
   if (rlang::is_call(mapping)) 
     mapping <- eval(mapping)

@@ -42,7 +42,8 @@ Server <- function(input, output, session, data = NULL, dataModule = c("GlobalEn
   updatePickerInput(session = session,
                     label = "Group Column:",
                     inputId = "group",
-                    choices =var_choices
+                    selected = 'None',
+                    choices =c(var_choices,'None')
   )
   print(input$col_bar_check)
   
@@ -133,7 +134,7 @@ Server <- function(input, output, session, data = NULL, dataModule = c("GlobalEn
                                df_name = dataChart$name,
                                x=input$x_label, 
                                y=input$y_label,
-                               group=input$group ,
+                               group=input$group,
                                coordflip = input$col_bar_check,
                                theme = input$theme)$plot
            

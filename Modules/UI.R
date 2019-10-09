@@ -139,7 +139,7 @@ UI <- function( id,
           pickerInput(
             inputId = ns("theme"),
             label = "X Axes Input:",
-            choices = list('538','flat'),
+            choices = list('538','flat','economist','monokai','google','chalk'),
               # list(
               # 'Fivethirtyeight', 'Economist' ,'Financial Times',
               # 'Dotabuff' ,'Flat','Simple',
