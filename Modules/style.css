@@ -68,7 +68,15 @@
   border-radius: 0;
 }
 
-
+.sw-dropdown-in {
+    position: relative;
+    padding: 6px 10px;
+    margin: 8px 10px;
+    /* width: auto; */
+    background-color: #1a608f;
+    z-index: 100;
+    color: white;
+}
 
 /* dropdowns width */
   

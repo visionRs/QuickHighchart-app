@@ -29,18 +29,18 @@ Server <- function(input, output, session, data = NULL, dataModule = c("GlobalEn
   var_choices <- setdiff(names(dataChart$data), attr(dataChart$data, "sf_column"))
   
   updatePickerInput(session = session,
-                    label = "",
+                    label = "X Axes Input:",
                     inputId = "x_label",
                     choices =var_choices
                    )
   updatePickerInput(session = session,
-                    label = "",
+                    label = "Y Axes Input:",
                     inputId = "y_label",
                     choices =var_choices
   )
   
   updatePickerInput(session = session,
-                    label = "",
+                    label = "Group Column:",
                     inputId = "group",
                     choices =var_choices
   )
