@@ -29,7 +29,7 @@ UI <- function( id,
     box_title,
     # page
     layout(
-     top =  radioGroupButtons(inputId = ns('radio'),choices = c('Bar','Scatter','Line','Box'),status='danger',justified = T ),
+     top =  radioGroupButtons(inputId = ns('radio_grp'),choices = c('Bar','Scatter','Line','Box'),status='danger',justified = T ),
        
       #  actionGroupButtons(
       #   inputIds = c(ns("Bar"), ns("Histogram"), ns("Scatter"), ns("Line"),ns("Box")),
@@ -78,9 +78,21 @@ UI <- function( id,
           ),
           tags$script(
             paste0("$('#", ns("y_label"), "').addClass('dropup');")
+          ),
+          pickerInput(
+            inputId = ns("group"),
+            label = "Group Column:",
+            choices = '',
+            selected = ""
+            
+          ),
+          tags$script(
+            paste0("$('#", ns("group"), "').addClass('dropup');")
           )
           
         ),
+        
+        
         
        # xy_options(ns),
         inputId = "xy_labels",

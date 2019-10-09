@@ -39,51 +39,86 @@ Server <- function(input, output, session, data = NULL, dataModule = c("GlobalEn
                     choices =var_choices
   )
   
+  updatePickerInput(session = session,
+                    label = "",
+                    inputId = "group",
+                    choices =var_choices
+  )
+  
   })
   observeEvent(c(input$x_label,input$y_label), {
     dt <- dataChart$data
     
     if((!is.numeric(dt[[input$x_label]]) & !is.numeric(dt[[input$y_label]])) | (is.null(dt[[input$x_label]]) & is.null(dt[[input$y_label]])) | is.null(dt[[input$x_label]])){
-      shinyjs::disable(selector = ".btn-group > .btn-group:first-child:not(:last-child) > .btn:last-child")
-      #shinyjs::runjs("$('[type=radio][value=Bar]').parent().parent().addClass('disabled').css('opacity', 0.4)")
+      #shinyjs::runjs('$("#radio button:eq(1)").attr("disabled", true);')
+
       
-      shinyjs::disable("Histogram")
-      shinyjs::disable("Scatter")
-      shinyjs::disable("Line")
-      shinyjs::disable("Box")
+     # shinyjs::disable(selector = "$('#radio_grp button:eq(3)")
+     # shinyjs::disable("Histogram")
+     # shinyjs::disable("Scatter")
+     # shinyjs::disable("Line")
+     # shinyjs::disable("Box")
       
+      
+      shinyjs::runjs("$('input[value=Bar]').parent().attr('disabled', true);")
+      shinyjs::runjs("$('input[value=Histogram]').parent().attr('disabled', true);")
+      shinyjs::runjs("$('input[value=Scatter]').parent().attr('disabled', true);")
+      shinyjs::runjs("$('input[value=Line]').parent().attr('disabled', true);")
+      shinyjs::runjs("$('input[value=Box]').parent().attr('disabled', true);")
       
     } else if((is.null(dt[[input$y_label]]) & is.numeric(dt[[input$x_label]]))) {
       
-      shinyjs::disable("Bar")
-      shinyjs::disable("Scatter")
-      shinyjs::disable("Line")
-      shinyjs::disable("Box")
-      shinyjs::enable("Histogram")
+      
+      shinyjs::runjs("$('input[value=Bar]').parent().attr('disabled', true);")
+      shinyjs::runjs("$('input[value=Histogram]').parent().attr('disabled', true);")
+      shinyjs::runjs("$('input[value=Scatter]').parent().attr('disabled', true);")
+      shinyjs::runjs("$('input[value=Line]').parent().attr('disabled', true);")
+      shinyjs::runjs("$('input[value=Box]').parent().attr('disabled', false);")
+      
+      
+      # shinyjs::disable("Bar")
+      # shinyjs::disable("Scatter")
+      # shinyjs::disable("Line")
+      # shinyjs::disable("Box")
+      # shinyjs::enable("Histogram")
       
       
     } else if(!is.numeric(dt[[input$x_label]]) | !is.numeric(dt[[input$y_label]])) {
       
-      shinyjs::enable("Bar")
-      shinyjs::disable("Scatter")
-      shinyjs::enable("Line")
-      shinyjs::disable("Histogram")
-      shinyjs::enable("Box")
+      # shinyjs::enable("Bar")
+      # shinyjs::disable("Scatter")
+      # shinyjs::enable("Line")
+      # shinyjs::disable("Histogram")
+      # shinyjs::enable("Box")
+      # 
       
+      shinyjs::runjs("$('input[value=Bar]').parent().attr('disabled', false);")
+      shinyjs::runjs("$('input[value=Histogram]').parent().attr('disabled', true);")
+      shinyjs::runjs("$('input[value=Scatter]').parent().attr('disabled', false);")
+      shinyjs::runjs("$('input[value=Line]').parent().attr('disabled', true);")
+      shinyjs::runjs("$('input[value=Box]').parent().attr('disabled', false);")
       
     } else {
       
-      shinyjs::enable("Bar")
-      shinyjs::enable("Scatter")
-      shinyjs::enable("Line")
-      shinyjs::enable("Box")
-      shinyjs::disable("Histogram")
+      # shinyjs::enable("Bar")
+      # shinyjs::enable("Scatter")
+      # shinyjs::enable("Line")
+      # shinyjs::enable("Box")
+      # shinyjs::disable("Histogram")
       
-    }
+      
+      shinyjs::runjs("$('input[value=Bar]').parent().attr('disabled', false);")
+      shinyjs::runjs("$('input[value=Histogram]').parent().attr('disabled', false);")
+      shinyjs::runjs("$('input[value=Scatter]').parent().attr('disabled', false);")
+      shinyjs::runjs("$('input[value=Line]').parent().attr('disabled', false);")
+      shinyjs::runjs("$('input[value=Box]').parent().attr('disabled', true);")
     
     # update textInputs for renaming axes
     # updateTextInput(session = session,inputId = "titleX", value = input$x_label)
     # updateTextInput(session = session,inputId = "titleY", value = input$y_label)
+      
+      
+    }
   })
   
   
@@ -93,8 +128,8 @@ Server <- function(input, output, session, data = NULL, dataModule = c("GlobalEn
     dt <- dataChart$data
     if(is.null(dt)){return()}
 
-    switch(input$radio,
-           "Bar" =    bar_plot(data = dt,df_name = dataChart$name,x=input$x_label, y=input$y_label, theme = input$theme)$plot
+    switch(input$radio_grp,
+           "Bar" =    bar_plot(data = dt,df_name = dataChart$name,x=input$x_label, y=input$y_label, group=input$group ,theme = input$theme)$plot
            
     )
     
@@ -105,9 +140,9 @@ Server <- function(input, output, session, data = NULL, dataModule = c("GlobalEn
     dt <- dataChart$data
     if(is.null(dt)){return()}
     
-    switch(input$radio,
+    switch(input$radio_grp,
            "Bar" =  htmltools::tagList(
-             rCodeContainer(id ="codeggplot", bar_plot(data = dt,df_name = dataChart$name,x=input$x_label, y=input$y_label, theme = input$theme)$code)
+             rCodeContainer(id ="codeggplot", bar_plot(data = dt,df_name = dataChart$name,x=input$x_label, y=input$y_label, group=input$group, theme = input$theme)$code)
            ) 
            
     )

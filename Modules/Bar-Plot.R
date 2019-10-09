@@ -23,6 +23,7 @@ bar_plot <- function(data=NULL,
                      df_name=NULL,
                      x=NULL,
                      y=NULL,
+                     group=NULL,
                      theme=NULL,
                      coordflip=F
                      ) {
@@ -32,7 +33,7 @@ bar_plot <- function(data=NULL,
     return(expr(hchart()))
   
   
-  mapping <- list(x=x,y=y)
+  mapping <- list(x=x,y=y,group=group)
   
   
   if (rlang::is_call(mapping)) 
