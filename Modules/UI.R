@@ -29,12 +29,14 @@ UI <- function( id,
     box_title,
     # page
     layout(
-     top =  actionGroupButtons(
-        inputIds = c(ns("Bar"), ns("Histogram"), ns("Scatter"), ns("Line"),ns("Box")),
-        labels = list("Bar", "Histogram", "Scatter","Line","Box"),
-        status = "danger",
-        fullwidth = T
-      ),
+     top =  radioGroupButtons(inputId = ns('radio'),choices = c('Bar','Scatter','Line','Box'),status='danger',justified = T ),
+       
+      #  actionGroupButtons(
+      #   inputIds = c(ns("Bar"), ns("Histogram"), ns("Scatter"), ns("Line"),ns("Box")),
+      #   labels = list("Bar", "Histogram", "Scatter","Line","Box"),
+      #   status = "danger",
+      #   fullwidth = T
+      # ),
      main = #htmltools::tags$div(
      #   style = "margin-top: 10px; padding-bottom: 25px; height: 100%;",
      #   tags$div(

@@ -77,6 +77,17 @@ bar_plot <- function(data=NULL,
     
   }
  
-  return(hccall)
+  plot <- rlang::eval_tidy(hccall)
+  
+  code <-  expr_deparse(hccall, width = 1e4)
+  code <- stri_replace_all(str = code, replacement = "%>%\n", fixed = "%>%")
+  ls <- list()
+  ls[['plot']] <- plot
+  ls[['code']] <- code
+  return(ls)
+
+  
+  #return(hccall)
+  
   
 } #function ends here
