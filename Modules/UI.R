@@ -154,18 +154,44 @@ UI <- function( id,
           tags$script(
             paste0("$('#", ns("theme"), "').addClass('dropup');")
           ),
-          radioGroupButtons(
-            inputId = ns("legend_position"), 
-            label = "Legend position:",
-            choiceNames = list(
-              icon("arrow-left"), icon("arrow-up"),
-              icon("arrow-down"), icon("arrow-right"), icon("close")
+          
+          dropdownButton(
+            inputId = "legend_drpdwn",
+            label = "Legend Options",
+            icon = icon("sliders"),
+            status = "success",
+            circle = FALSE,
+            
+            radioGroupButtons(
+              inputId = ns("legendPos"), 
+              label = "Legend position:",
+              choiceNames = list(
+                icon("arrow-left"), icon("arrow-up"),
+                icon("arrow-down"), icon("arrow-right"), icon("close")
+              ),
+              choiceValues = c("left", "top", "bottom", "right", "none"),
+              selected = "bottom",
+              justified = TRUE, 
+              size = "sm"
             ),
-            choiceValues = c("left", "top", "bottom", "right", "none"),
-            selected = "right",
-            justified = TRUE, 
-            size = "sm"
+            radioGroupButtons(
+              inputId = ns("legendVerticalAlign"), 
+              label = "Legend position:",
+              choiceNames = list(
+                icon("arrow-up"),
+                icon("arrow-down")
+              ),
+              choiceValues = c( "top", "bottom"),
+              selected = "bottom",
+              justified = TRUE, 
+              size = "sm"
+            )
           ),
+          tags$script(
+            paste0("$('#", ns("legend_drpdwn"), "').addClass('dropup');")
+          ),
+          
+          
           radioGroupButtons(
             inputId = ns("col_bar_check"),
             label = "Select Column/Bar type:",

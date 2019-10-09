@@ -25,7 +25,12 @@ bar_plot <- function(data=NULL,
                      y=NULL,
                      group=NULL,
                      theme=NULL,
-                     coordflip=NULL
+                     coordflip=NULL,
+                     legendPos='bottom',
+                     legendVerticalAlign='bottom',
+                     legendLayout='horizontal',
+                     legendx=0,
+                     legendy=100
                      ) {
   
   
@@ -72,6 +77,21 @@ bar_plot <- function(data=NULL,
   hccall <- expr(!!df_name %>% !!hccall)
   
   
+  
+  ##Legend Options
+  
+  legend_mapping <- list( align = legendPos,
+                          verticalAlign = legendVerticalAlign,
+                          layout = legendLayout, 
+                          x = legendx,
+                          y = legendy)
+  legend_mapping <- legend_mapping[!vapply(legend_mapping, is.null, FUN.VALUE = logical(1))]
+  legend_mapping <- expr(hcaes(!!!syms2(legend_mapping)))
+  
+  
+  hccall <- expr(!!hccall %>% !!legend_mapping)
+  
+
   if (!is.null(theme)) {
     theme <- tolower(theme)
     theme <- paste0("hc_theme_",theme)

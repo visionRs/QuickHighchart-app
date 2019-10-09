@@ -136,6 +136,12 @@ Server <- function(input, output, session, data = NULL, dataModule = c("GlobalEn
                                y=input$y_label,
                                group=input$group,
                                coordflip = input$col_bar_check,
+                               legendPos=input$legendPos,
+                               legendVerticalAlign=input$legendVerticalAlign,
+                               legendLayout=input$legendLayout,
+                               legendx=input$legendx,
+                               legendy=input$legendy,
+                               
                                theme = input$theme)$plot
            
     )
@@ -155,6 +161,11 @@ Server <- function(input, output, session, data = NULL, dataModule = c("GlobalEn
                                                        y=input$y_label, 
                                                        group=input$group,
                                                        coordflip = input$col_bar_check,
+                                                       legendPos=input$legendPos,
+                                                       legendVerticalAlign=input$legendVerticalAlign,
+                                                       legendLayout=input$legendLayout,
+                                                       legendx=input$legendx,
+                                                       legendy=input$legendy,
                                                        theme = input$theme)$code)
            ) 
            
