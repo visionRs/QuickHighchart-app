@@ -117,10 +117,13 @@ UI <- function( id,
         icon = icon("font"), 
         status = "default btn-controls"
       ),
+      
+      
+      
+      #Plot options drpdwn starts here
       dropdown(
         #plot_options(ns),
-       
-        
+      
         
         tagList(
           tags$div(
@@ -162,7 +165,15 @@ UI <- function( id,
             selected = "right",
             justified = TRUE, 
             size = "sm"
+          ),
+          radioGroupButtons(
+            inputId = ns("col_bar_check"),
+            label = "Select Column/Bar type:",
+            choices = c("Column", "Bar"),
+            status = "success"
           )
+          
+          
         ),
 
         style = "default",
@@ -172,6 +183,8 @@ UI <- function( id,
         icon = icon("gears"), 
         status = "default btn-controls"
       ),
+      
+      #Code Dropdown starts here
       dropdown(
         #code_options(ns, insert_code = insert_code), 
         tagList(

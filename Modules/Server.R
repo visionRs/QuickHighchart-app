@@ -44,6 +44,7 @@ Server <- function(input, output, session, data = NULL, dataModule = c("GlobalEn
                     inputId = "group",
                     choices =var_choices
   )
+  print(input$col_bar_check)
   
   })
   observeEvent(c(input$x_label,input$y_label), {
@@ -127,9 +128,14 @@ Server <- function(input, output, session, data = NULL, dataModule = c("GlobalEn
   output$plot <- renderHighchart({
     dt <- dataChart$data
     if(is.null(dt)){return()}
-
     switch(input$radio_grp,
-           "Bar" =    bar_plot(data = dt,df_name = dataChart$name,x=input$x_label, y=input$y_label, group=input$group ,theme = input$theme)$plot
+           "Bar" =    bar_plot(data = dt,
+                               df_name = dataChart$name,
+                               x=input$x_label, 
+                               y=input$y_label,
+                               group=input$group ,
+                               coordflip = input$col_bar_check,
+                               theme = input$theme)$plot
            
     )
     
@@ -142,7 +148,13 @@ Server <- function(input, output, session, data = NULL, dataModule = c("GlobalEn
     
     switch(input$radio_grp,
            "Bar" =  htmltools::tagList(
-             rCodeContainer(id ="codeggplot", bar_plot(data = dt,df_name = dataChart$name,x=input$x_label, y=input$y_label, group=input$group, theme = input$theme)$code)
+             rCodeContainer(id ="codeggplot", bar_plot(data = dt,
+                                                       df_name = dataChart$name,
+                                                       x=input$x_label, 
+                                                       y=input$y_label, 
+                                                       group=input$group,
+                                                       coordflip = input$col_bar_check,
+                                                       theme = input$theme)$code)
            ) 
            
     )

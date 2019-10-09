@@ -25,7 +25,7 @@ bar_plot <- function(data=NULL,
                      y=NULL,
                      group=NULL,
                      theme=NULL,
-                     coordflip=F
+                     coordflip=NULL
                      ) {
   
   
@@ -57,9 +57,9 @@ bar_plot <- function(data=NULL,
   hcaes_mappings <- expr(hcaes(!!!syms2(mapping)))
   
   df_name <- expr(!!sym(df_name) )
-  
+ 
   # Selecting column vs bar based on user input
-  if(coordflip){ 
+  if(coordflip=='Bar'){ 
     hccall <- expr(hchart(. , type='bar' , !!hcaes_mappings)) } 
   else {
     hccall <- expr(hchart(. , type='column' , !!hcaes_mappings))
