@@ -113,18 +113,10 @@ Server <- function(input, output, session, data = NULL, dataModule = c("GlobalEn
   
   
   output$code <- renderUI({
-    code <- list_both$code
-    code <- stri_replace_all(str = code, replacement = "+\n", fixed = "+")
-    if (!is.null(output_filter$code$expr)) {
-      code_dplyr <- deparse(output_filter$code$dplyr, width.cutoff = 80L)
-      code_dplyr <- paste(code_dplyr, collapse = "\n")
-      nm_dat <- data_name()
-      code_dplyr <- paste(nm_dat, code_dplyr, sep = " <- ")
-      code_dplyr <- stri_replace_all(str = code_dplyr, replacement = "%>%\n", fixed = "%>%")
-      code <- paste(code_dplyr, code, sep = "\n\n")
-    }
+    code <-  expr_deparse(list_both$code, width = 1e4)
+    code <- stri_replace_all(str = code, replacement = "%>%\n", fixed = "%>%")
     htmltools::tagList(
-      rCodeContainer(id = ns("codeggplot"), code)
+      rCodeContainer(id ="codeggplot", code)
     )
   })
   

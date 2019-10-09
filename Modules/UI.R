@@ -29,7 +29,7 @@ UI <- function( id,
     box_title,
     # page
     layout(
-     top =   actionGroupButtons(
+     top =  actionGroupButtons(
         inputIds = c(ns("Bar"), ns("Histogram"), ns("Scatter"), ns("Line"),ns("Box")),
         labels = list("Bar", "Histogram", "Scatter","Line","Box"),
         status = "danger",
@@ -55,7 +55,6 @@ UI <- function( id,
       # X-Y DropUp options ------
       dropdown(
         tagList(
-          
           pickerInput(
             inputId = ns("x_label"),
             label = "X Axes Input:",
@@ -66,6 +65,7 @@ UI <- function( id,
           tags$script(
             paste0("$('#", ns("x_label"), "').addClass('dropup');")
           ),
+          
           
           pickerInput(
             inputId = ns("y_label"),
