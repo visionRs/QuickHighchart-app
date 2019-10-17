@@ -30,7 +30,13 @@
                      legendVerticalAlign='bottom',
                      legendLayout='horizontal',
                      legendx='0',
-                     legendy='0'
+                     legendy='0',
+                     title_text=NULL,
+                     title_margin = 15,
+                     title_align='center',
+                     title_color='black',
+                     title_font_weight="bold",
+                     title_useHTML=T
                      ) {
   
   
@@ -79,14 +85,25 @@
   
   
   ##Legend Options
-  
-
   legend <-expr(hc_legend(align = !!paste0(legendPos), verticalAlign = !!paste0(legendVerticalAlign), layout= !!paste0(legendLayout) , x = !!as.numeric(legendx), y = !!as.numeric(legendy)))
-
-
   hccall <- expr(!!hccall %>% !!legend)
   
-
+  
+  ##Title Options
+  if(!is.null(title)){
+    
+  title <- expr(hc_title(text=!!paste0(title_text),
+                         margin=!!as.numeric(title_margin),
+                         align=!!paste0(title_align),
+                         style=list(color=!!paste0(title_color),
+                                    fontWeight=!!paste0(title_font_weight),
+                                    useHTML=!!as.logical(title_useHTML))))
+    
+  }
+  
+  
+  
+  #Theme Options
   if (!is.null(theme)) {
     theme <- tolower(theme)
     theme <- paste0("hc_theme_",theme)

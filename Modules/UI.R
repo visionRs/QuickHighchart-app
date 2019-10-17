@@ -115,7 +115,58 @@ UI <- function( id,
         label = "Aesthetics", 
         up = TRUE, 
         icon = icon("font"), 
-        status = "default btn-controls"
+        status = "default btn-controls",
+       
+     
+        
+        dropdownButton(
+          inputId = "legend_drpdwn",
+          label = "Legend Options",
+          icon = icon("sliders"),
+          status = "success",
+          circle = FALSE, up=TRUE,
+          width = '100%',
+          radioGroupButtons(
+            inputId = ns("legendPos"), 
+            label = "Legend Align:",
+            choiceNames = list(
+              icon("arrow-left"), icon("align-center"),
+              icon("arrow-right")
+            ),
+            choiceValues = c("left", "center", "right"),
+            selected = "center",
+            justified = TRUE, 
+            size = "sm"
+          ),
+          radioGroupButtons(
+            inputId = ns("legendVerticalAlign"), 
+            label = "Legend Vertical Align:",
+            choiceNames = list(
+              icon("arrow-up"),icon("align-center"),
+              icon("arrow-down")
+            ),
+            choiceValues = c( "top", "middle","bottom"),
+            selected = "bottom",
+            justified = TRUE, 
+            size = "sm"
+          ),
+          radioGroupButtons(
+            inputId = ns("legendLayout"), 
+            label = "Legend Layout:",
+            choiceNames = list(
+              icon("arrows-alt-h"),
+              icon("arrows-alt-v"),icon('adjust')
+            ),
+            choiceValues = c( "horizontal", "vertical","proximate"),
+            selected = "horizontal",
+            justified = TRUE, 
+            size = "sm"
+          ),
+          numericInput(inputId = ns('legendx'),label = "x",value = 0,min = 0,max=100,step = 0.01),
+          numericInput(inputId = ns('legendy'),label = "y",value = 0,min = 0,max=100,step = 0.01)
+        )
+        
+        
       ),
       
       
@@ -154,56 +205,8 @@ UI <- function( id,
           tags$script(
             paste0("$('#", ns("theme"), "').addClass('dropup');")
           ),
-          
-          dropdownButton(
-            inputId = "legend_drpdwn",
-            label = "Legend Options",
-            icon = icon("sliders"),
-            status = "success",
-            circle = FALSE,
-            
-            radioGroupButtons(
-              inputId = ns("legendPos"), 
-              label = "Legend Align:",
-              choiceNames = list(
-                icon("arrow-left"), icon("align-center"),
-                 icon("arrow-right")
-              ),
-              choiceValues = c("left", "center", "right"),
-              selected = "center",
-              justified = TRUE, 
-              size = "sm"
-            ),
-            radioGroupButtons(
-              inputId = ns("legendVerticalAlign"), 
-              label = "Legend Vertical Align:",
-              choiceNames = list(
-                icon("arrow-up"),icon("align-center"),
-                icon("arrow-down")
-              ),
-              choiceValues = c( "top", "middle","bottom"),
-              selected = "bottom",
-              justified = TRUE, 
-              size = "sm"
-            ),
-            radioGroupButtons(
-              inputId = ns("legendLayout"), 
-              label = "Legend Layout:",
-              choiceNames = list(
-                icon("arrows-alt-h"),
-                icon("arrows-alt-v"),icon('adjust')
-              ),
-              choiceValues = c( "horizontal", "vertical","proximate"),
-              selected = "horizontal",
-              justified = TRUE, 
-              size = "sm"
-            ),
-            numericInput(inputId = ns('legendx'),label = "x",value = 0,min = 0,max=100,step = 0.01),
-            numericInput(inputId = ns('legendy'),label = "y",value = 0,min = 0,max=100,step = 0.01)
-          ),
-          tags$script(
-            paste0("$('#", ns("legend_drpdwn"), "').addClass('dropup');")
-          ),
+          #tags$head(tags$style(HTML('#legend_drpdwn+ div>.selectize-dropdown{bottom: 100% !important; top:auto!important;}'))),
+       
           
           
           radioGroupButtons(
