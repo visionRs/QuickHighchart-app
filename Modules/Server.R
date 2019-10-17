@@ -174,7 +174,24 @@ Server <- function(input, output, session, data = NULL, dataModule = c("GlobalEn
                             title_margin = input$title_margin,
                             title_color = input$title_color,
                             title_useHTML = input$title_useHTML,
-                            theme = input$theme)$plot
+                            theme = input$theme)$plot,
+           
+           "Scatter"=.scatter_plot(data = dt,
+                             df_name = dataChart$name,
+                             x=input$x_label, 
+                             y=input$y_label,
+                             group=input$group,
+                             legendPos=input$legendPos,
+                             legendVerticalAlign=input$legendVerticalAlign,
+                             legendLayout=input$legendLayout,
+                             legendx=input$legendx,
+                             legendy=input$legendy,
+                             title_text = input$title_text,
+                             title_align = input$title_align,
+                             title_margin = input$title_margin,
+                             title_color = input$title_color,
+                             title_useHTML = input$title_useHTML,
+                             theme = input$theme)$plot
            
     )
     
@@ -225,6 +242,25 @@ Server <- function(input, output, session, data = NULL, dataModule = c("GlobalEn
                                                         title_useHTML = input$title_useHTML,
                                                         theme = input$theme)$code)
            ) ,
+           
+           "Scatter"=htmltools::tagList(
+             rCodeContainer(id ="codeggplot", .scatter_plot(data = dt,
+                                                         df_name = dataChart$name,
+                                                         x=input$x_label, 
+                                                         y=input$y_label, 
+                                                         group=input$group,
+                                                         legendPos=input$legendPos,
+                                                         legendVerticalAlign=input$legendVerticalAlign,
+                                                         legendLayout=input$legendLayout,
+                                                         legendx=input$legendx,
+                                                         legendy=input$legendy,
+                                                         title_text = input$title_text,
+                                                         title_align = input$title_align,
+                                                         title_margin = input$title_margin,
+                                                         title_color = input$title_color,
+                                                         title_useHTML = input$title_useHTML,
+                                                         theme = input$theme)$code)
+           ) 
            
     )
     
