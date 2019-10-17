@@ -98,7 +98,8 @@
                          style=list(color=!!paste0(title_color),
                                     fontWeight=!!paste0(title_font_weight),
                                     useHTML=!!as.logical(title_useHTML))))
-    
+  hccall <- expr(!!hccall %>% !!title)
+  
   }
   
   

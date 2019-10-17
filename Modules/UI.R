@@ -120,12 +120,12 @@ UI <- function( id,
      
         
         dropdownButton(
-          inputId = "legend_drpdwn",
+          inputId = ns("legend_drpdwn"),
           label = "Legend Options",
           icon = icon("sliders"),
           status = "success",
           circle = FALSE, up=TRUE,
-          width = '100%',
+          width = "100%",
           radioGroupButtons(
             inputId = ns("legendPos"), 
             label = "Legend Align:",
@@ -164,7 +164,58 @@ UI <- function( id,
           ),
           numericInput(inputId = ns('legendx'),label = "x",value = 0,min = 0,max=100,step = 0.01),
           numericInput(inputId = ns('legendy'),label = "y",value = 0,min = 0,max=100,step = 0.01)
-        )
+        ),
+        
+        dropdownButton(
+           inputId = ns("title_drpdwn"),
+           label = "Title Options",
+           icon = icon("heading"),
+           status = "success",
+           circle = FALSE, up=TRUE,
+           width = "100%",
+           textInput(inputId = ns("title_text"),label = "Title Text:",value = "",width = '100%'),
+           numericInput(inputId = ns('title_margin'),label = "Title Margin",value = 15,min = 0,max=100,step = 0.01),
+           radioGroupButtons(
+             inputId = ns("title_align"), 
+             label = "Title Align:",
+             choiceNames = list(
+               icon("arrow-left"), icon("align-center"),
+               icon("arrow-right")
+             ),
+             choiceValues = c("left", "center", "right"),
+             selected = "center",
+             justified = TRUE, 
+             size = "sm"
+           ),
+           spectrumInput(
+             inputId = ns('title_color'),
+             label = 'Title Color',
+             choices = list(
+               list('black', 'white', 'blanchedalmond', 'steelblue', 'forestgreen'),
+               as.list(brewer.pal(n = 9, name = "Blues")),
+               as.list(brewer.pal(n = 9, name = "Greens")),
+               as.list(brewer.pal(n = 11, name = "Spectral")),
+               as.list(brewer.pal(n = 8, name = "Dark2"))
+             ),
+             options = list(`toggle-palette-more-text` = "Show more"),
+             selected = 'black'
+           ),
+           radioGroupButtons(
+             inputId = ns("title_useHTML"), 
+             label = "Title HTML Use:",
+             choiceNames = list(
+               icon("check-circle"), icon("times-circle")
+             ),
+             choiceValues = c("TRUE", "FALSE"),
+             selected = "FALSE",
+             justified = TRUE, 
+             size = "sm"
+           )
+
+                       
+                    
+                       
+                       )
         
         
       ),

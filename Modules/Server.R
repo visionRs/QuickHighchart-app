@@ -141,7 +141,11 @@ Server <- function(input, output, session, data = NULL, dataModule = c("GlobalEn
                                legendLayout=input$legendLayout,
                                legendx=input$legendx,
                                legendy=input$legendy,
-                               
+                               title_text = input$title_text,
+                               title_align = input$title_align,
+                               title_margin = input$title_margin,
+                               title_color = input$title_color,
+                               title_useHTML = input$title_useHTML,
                                theme = input$theme)$plot
            
     )
@@ -166,6 +170,13 @@ Server <- function(input, output, session, data = NULL, dataModule = c("GlobalEn
                                                        legendLayout=input$legendLayout,
                                                        legendx=input$legendx,
                                                        legendy=input$legendy,
+                                                       title_text = input$title_text,
+                                                       title_align = input$title_align,
+                                                       title_margin = input$title_margin,
+                                                       title_color = input$title_color,
+                                                       title_useHTML = input$title_useHTML,
+                                                       
+                                                       
                                                        theme = input$theme)$code)
            ) 
            
