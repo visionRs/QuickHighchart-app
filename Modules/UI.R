@@ -164,28 +164,42 @@ UI <- function( id,
             
             radioGroupButtons(
               inputId = ns("legendPos"), 
-              label = "Legend position:",
+              label = "Legend Align:",
               choiceNames = list(
-                icon("arrow-left"), icon("arrow-up"),
-                icon("arrow-down"), icon("arrow-right"), icon("close")
+                icon("arrow-left"), icon("align-center"),
+                 icon("arrow-right")
               ),
-              choiceValues = c("left", "top", "bottom", "right", "none"),
-              selected = "bottom",
+              choiceValues = c("left", "center", "right"),
+              selected = "center",
               justified = TRUE, 
               size = "sm"
             ),
             radioGroupButtons(
               inputId = ns("legendVerticalAlign"), 
-              label = "Legend position:",
+              label = "Legend Vertical Align:",
               choiceNames = list(
-                icon("arrow-up"),
+                icon("arrow-up"),icon("align-center"),
                 icon("arrow-down")
               ),
-              choiceValues = c( "top", "bottom"),
+              choiceValues = c( "top", "middle","bottom"),
               selected = "bottom",
               justified = TRUE, 
               size = "sm"
-            )
+            ),
+            radioGroupButtons(
+              inputId = ns("legendLayout"), 
+              label = "Legend Layout:",
+              choiceNames = list(
+                icon("arrows-alt-h"),
+                icon("arrows-alt-v"),icon('adjust')
+              ),
+              choiceValues = c( "horizontal", "vertical","proximate"),
+              selected = "horizontal",
+              justified = TRUE, 
+              size = "sm"
+            ),
+            numericInput(inputId = ns('legendx'),label = "x",value = 0,min = 0,max=100,step = 0.01),
+            numericInput(inputId = ns('legendy'),label = "y",value = 0,min = 0,max=100,step = 0.01)
           ),
           tags$script(
             paste0("$('#", ns("legend_drpdwn"), "').addClass('dropup');")

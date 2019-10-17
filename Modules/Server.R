@@ -130,7 +130,7 @@ Server <- function(input, output, session, data = NULL, dataModule = c("GlobalEn
     dt <- dataChart$data
     if(is.null(dt)){return()}
     switch(input$radio_grp,
-           "Bar" =    bar_plot(data = dt,
+           "Bar" =    .bar_plot(data = dt,
                                df_name = dataChart$name,
                                x=input$x_label, 
                                y=input$y_label,
@@ -155,7 +155,7 @@ Server <- function(input, output, session, data = NULL, dataModule = c("GlobalEn
     
     switch(input$radio_grp,
            "Bar" =  htmltools::tagList(
-             rCodeContainer(id ="codeggplot", bar_plot(data = dt,
+             rCodeContainer(id ="codeggplot", .bar_plot(data = dt,
                                                        df_name = dataChart$name,
                                                        x=input$x_label, 
                                                        y=input$y_label, 

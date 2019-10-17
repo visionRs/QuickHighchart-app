@@ -19,18 +19,18 @@
 
 #1.1 PLOTS CODE: Bar Plot---------------------
 
-bar_plot <- function(data=NULL,
+.bar_plot <- function(data=NULL,
                      df_name=NULL,
                      x=NULL,
                      y=NULL,
                      group=NULL,
                      theme=NULL,
                      coordflip=NULL,
-                     legendPos='bottom',
+                     legendPos='center',
                      legendVerticalAlign='bottom',
                      legendLayout='horizontal',
-                     legendx=0,
-                     legendy=100
+                     legendx='0',
+                     legendy='0'
                      ) {
   
   
@@ -80,16 +80,11 @@ bar_plot <- function(data=NULL,
   
   ##Legend Options
   
-  # legend_mapping <- list( align = legendPos,
-  #                         verticalAlign = legendVerticalAlign,
-  #                         layout = legendLayout, 
-  #                         x = legendx,
-  #                         y = legendy)
-  # legend_mapping <- legend_mapping[!vapply(legend_mapping, is.null, FUN.VALUE = logical(1))]
-  # legend_mapping <- expr(hcaes(!!!syms2(legend_mapping)))
-  # 
-  # 
-  # hccall <- expr(!!hccall %>% !!legend_mapping)
+
+  legend <-expr(hc_legend(align = !!paste0(legendPos), verticalAlign = !!paste0(legendVerticalAlign), layout= !!paste0(legendLayout) , x = !!as.numeric(legendx), y = !!as.numeric(legendy)))
+
+
+  hccall <- expr(!!hccall %>% !!legend)
   
 
   if (!is.null(theme)) {
@@ -108,6 +103,7 @@ bar_plot <- function(data=NULL,
   ls <- list()
   ls[['plot']] <- plot
   ls[['code']] <- code
+  
   return(ls)
 
   
