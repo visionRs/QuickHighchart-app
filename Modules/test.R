@@ -6,7 +6,7 @@ source('~/working_dir/projects/QuickHighChart/Modules/optionUI.R', echo=F)
 source('~/working_dir/projects/QuickHighChart/Modules/Server.R', echo=F)
 source('~/working_dir/projects/QuickHighChart/Modules/Bar-Plot.R', echo=F)
 source('~/working_dir/projects/QuickHighChart/Modules/rCodeContainer.R', echo=F)
-
+source('~/working_dir/projects/QuickHighChart/Modules/Line-Plot.R', echo=TRUE)
 library(shiny)
 library(shinyWidgets)
 library(miniUI)

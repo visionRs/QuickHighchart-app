@@ -19,57 +19,34 @@
 
 #1.1 PLOTS CODE: Bar Plot---------------------
 
-.bar_plot <- function(data=NULL,
-                     df_name=NULL,
-                     x='None',
-                     y='None',
-                     group='None',
-                     theme=NULL,
-                     coordflip=NULL,
-                     legendPos='center',
-                     legendVerticalAlign='bottom',
-                     legendLayout='horizontal',
-                     legendx='0',
-                     legendy='0',
-                     title_text=NULL,
-                     title_margin = 15,
-                     title_align='center',
-                     title_color='black',
-                     title_font_weight="bold",
-                     title_useHTML=T
-                     ) {
+.line_plot <- function(data=NULL,
+                      df_name=NULL,
+                      x=NULL,
+                      y=NULL,
+                      group=NULL,
+                      theme=NULL,
+                      legendPos='center',
+                      legendVerticalAlign='bottom',
+                      legendLayout='horizontal',
+                      legendx='0',
+                      legendy='0',
+                      title_text=NULL,
+                      title_margin = 15,
+                      title_align='center',
+                      title_color='black',
+                      title_font_weight="bold",
+                      title_useHTML=T
+) {
   
   
   if (is.null(data))
     return(expr(hchart()))
-  # 
+  
   # if(group=='None'){
   #   mapping <- list(x=x,y=y)
   #   
   # } else {
-  # mapping <- list(x=x,y=y,group=group)
-  # }
-  # 
-  # if(x=='None'){
-  #   if(group=='None'){
-  #     mapping <- list(y=y) }
-  #   else {
-  #     mapping <- list(y=y,group=group)
-  #   }
-  #   
-  # } else if(y=='None'){
-  #   
-  #   if(group=='None'){
-  #     mapping <- list(x=x) }
-  #   else {
-  #     mapping <- list(x=x,group=group)
-  #   }
-  #   
-  # } else {
-  #   
   #   mapping <- list(x=x,y=y,group=group)
-  #   
-  #   
   # }
   
   if(x!='None' & y!='None' & group!='None'){
@@ -88,19 +65,19 @@
     
     mapping <- list(x=x,y=y)
     
-  
+    
   } else if(x!='None' & y=='None' & group!='None') {
     
     mapping <- list(x=x,group=group)
     
   } else if(x=='None' & y!='None' & group=='None') {
-  
+    
     mapping <- list(y=y)
     
   } else if(x!='None' & y=='None' & group=='None') {
     mapping <- list(x=x)
     
-  
+    
   } else if(x=='None' & y=='None' & group=='None') {
     return(expr(hchart()))
     
@@ -110,7 +87,7 @@
     mapping <- eval(mapping)
   
   mapping <- mapping[!vapply(mapping, is.null, FUN.VALUE = logical(1))]
-
+  
   syms2 <- function(x) {
     lapply(
       X = x,
@@ -127,13 +104,11 @@
   hcaes_mappings <- expr(hcaes(!!!syms2(mapping)))
   
   df_name <- expr(!!sym(df_name) )
- 
+  
   # Selecting column vs bar based on user input
-  if(coordflip=='Bar'){ 
-    hccall <- expr(hchart(. , type='bar' , !!hcaes_mappings)) } 
-  else {
-    hccall <- expr(hchart(. , type='column' , !!hcaes_mappings))
-  }
+
+    hccall <- expr(hchart(. , type='line' , !!hcaes_mappings))
+  
   
   
   hccall <- expr(!!df_name %>% !!hccall)
@@ -148,14 +123,14 @@
   ##Title Options
   if(!is.null(title)){
     
-  title <- expr(hc_title(text=!!paste0(title_text),
-                         margin=!!as.numeric(title_margin),
-                         align=!!paste0(title_align),
-                         style=list(color=!!paste0(title_color),
-                                    fontWeight=!!paste0(title_font_weight),
-                                    useHTML=!!as.logical(title_useHTML))))
-  hccall <- expr(!!hccall %>% !!title)
-  
+    title <- expr(hc_title(text=!!paste0(title_text),
+                           margin=!!as.numeric(title_margin),
+                           align=!!paste0(title_align),
+                           style=list(color=!!paste0(title_color),
+                                      fontWeight=!!paste0(title_font_weight),
+                                      useHTML=!!as.logical(title_useHTML))))
+    hccall <- expr(!!hccall %>% !!title)
+    
   }
   
   
@@ -166,10 +141,10 @@
     theme <- paste0("hc_theme_",theme)
     theme <- expr(hc_add_theme((!!sym(theme))()))
     hccall <- expr(!!hccall %>% !!theme)
- 
+    
     
   }
- 
+  
   plot <- rlang::eval_tidy(hccall)
   
   code <-  expr_deparse(hccall, width = 1e4)
@@ -179,7 +154,7 @@
   ls[['code']] <- code
   
   return(ls)
-
+  
   
   #return(hccall)
   

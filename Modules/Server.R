@@ -31,12 +31,14 @@ Server <- function(input, output, session, data = NULL, dataModule = c("GlobalEn
   updatePickerInput(session = session,
                     label = "X Axes Input:",
                     inputId = "x_label",
-                    choices =var_choices
+                    selected = 'None',
+                    choices =c(var_choices,'None')
                    )
   updatePickerInput(session = session,
                     label = "Y Axes Input:",
                     inputId = "y_label",
-                    choices =var_choices
+                    selected = 'None',
+                    choices =c(var_choices,'None')
   )
   
   updatePickerInput(session = session,
@@ -51,7 +53,7 @@ Server <- function(input, output, session, data = NULL, dataModule = c("GlobalEn
   observeEvent(c(input$x_label,input$y_label), {
     dt <- dataChart$data
     
-    if((!is.numeric(dt[[input$x_label]]) & !is.numeric(dt[[input$y_label]])) | (is.null(dt[[input$x_label]]) & is.null(dt[[input$y_label]])) | is.null(dt[[input$x_label]])){
+    if((!is.numeric(dt[[input$x_label]]) & !is.numeric(dt[[input$y_label]])) | (is.null(dt[[input$x_label]]) & is.null(dt[[input$y_label]])) ){
       #shinyjs::runjs('$("#radio button:eq(1)").attr("disabled", true);')
 
       
@@ -83,6 +85,15 @@ Server <- function(input, output, session, data = NULL, dataModule = c("GlobalEn
       # shinyjs::disable("Line")
       # shinyjs::disable("Box")
       # shinyjs::enable("Histogram")
+      
+    } else if((is.null(dt[[input$x_label]]) & is.numeric(dt[[input$y_label]]))) {
+      
+      
+      shinyjs::runjs("$('input[value=Bar]').parent().attr('disabled', false);")
+      shinyjs::runjs("$('input[value=Histogram]').parent().attr('disabled', false);")
+      shinyjs::runjs("$('input[value=Scatter]').parent().attr('disabled', true);")
+      shinyjs::runjs("$('input[value=Line]').parent().attr('disabled', false);")
+      shinyjs::runjs("$('input[value=Box]').parent().attr('disabled', true);")
       
       
     } else if(!is.numeric(dt[[input$x_label]]) | !is.numeric(dt[[input$y_label]])) {
@@ -146,7 +157,24 @@ Server <- function(input, output, session, data = NULL, dataModule = c("GlobalEn
                                title_margin = input$title_margin,
                                title_color = input$title_color,
                                title_useHTML = input$title_useHTML,
-                               theme = input$theme)$plot
+                               theme = input$theme)$plot,
+           
+           "Line"=.line_plot(data = dt,
+                            df_name = dataChart$name,
+                            x=input$x_label, 
+                            y=input$y_label,
+                            group=input$group,
+                            legendPos=input$legendPos,
+                            legendVerticalAlign=input$legendVerticalAlign,
+                            legendLayout=input$legendLayout,
+                            legendx=input$legendx,
+                            legendy=input$legendy,
+                            title_text = input$title_text,
+                            title_align = input$title_align,
+                            title_margin = input$title_margin,
+                            title_color = input$title_color,
+                            title_useHTML = input$title_useHTML,
+                            theme = input$theme)$plot
            
     )
     
@@ -178,7 +206,25 @@ Server <- function(input, output, session, data = NULL, dataModule = c("GlobalEn
                                                        
                                                        
                                                        theme = input$theme)$code)
-           ) 
+           ) ,
+           "Line"=htmltools::tagList(
+             rCodeContainer(id ="codeggplot", .line_plot(data = dt,
+                                                        df_name = dataChart$name,
+                                                        x=input$x_label, 
+                                                        y=input$y_label, 
+                                                        group=input$group,
+                                                        legendPos=input$legendPos,
+                                                        legendVerticalAlign=input$legendVerticalAlign,
+                                                        legendLayout=input$legendLayout,
+                                                        legendx=input$legendx,
+                                                        legendy=input$legendy,
+                                                        title_text = input$title_text,
+                                                        title_align = input$title_align,
+                                                        title_margin = input$title_margin,
+                                                        title_color = input$title_color,
+                                                        title_useHTML = input$title_useHTML,
+                                                        theme = input$theme)$code)
+           ) ,
            
     )
     
