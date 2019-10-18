@@ -117,7 +117,7 @@
   
   
   #7.Title Options--------------
-  if(!is.null(title)){
+  if(!is.null(title_text)){
     
   title <- expr(hc_title(text=!!paste0(title_text),
                          margin=!!as.numeric(title_margin),
@@ -132,6 +132,23 @@
   
   
   #8. X & Y Axis Options---------
+  if(!is.null(title_text_x) | !is.null(title_x_opposite)){
+    
+    hc_x_axis <- expr(hc_xAxis(title=list(text=!!paste0(title_text_x)),
+                               opposite = !!as.logical(title_x_opposite),
+                               plotLines = list(
+                                 list(label = list(text = !!paste0(title_x_plotline_text)),
+                                      color = !!paste0(title_x_plotline_color),
+                                      width = !!paste0(title_x_plotline_width),
+                                      value = !!paste0(title_x_plotline_value)
+                                      )
+                                 )
+                               )
+                      )
+    
+    hccall <- expr(!!hccall %>% !!hc_x_axis)
+    
+  }
   
   
   #8.Theme Options-----------
