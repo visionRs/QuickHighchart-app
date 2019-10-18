@@ -39,38 +39,11 @@
                      title_useHTML=T
                      ) {
   
-  
+  #1. Validation: Checking if data is null------------
   if (is.null(data))
     return(expr(hchart()))
-  # 
-  # if(group=='None'){
-  #   mapping <- list(x=x,y=y)
-  #   
-  # } else {
-  # mapping <- list(x=x,y=y,group=group)
-  # }
-  # 
-  # if(x=='None'){
-  #   if(group=='None'){
-  #     mapping <- list(y=y) }
-  #   else {
-  #     mapping <- list(y=y,group=group)
-  #   }
-  #   
-  # } else if(y=='None'){
-  #   
-  #   if(group=='None'){
-  #     mapping <- list(x=x) }
-  #   else {
-  #     mapping <- list(x=x,group=group)
-  #   }
-  #   
-  # } else {
-  #   
-  #   mapping <- list(x=x,y=y,group=group)
-  #   
-  #   
-  # }
+ 
+  #2. Validation: Mapping conditions------------
   
   if(x!='None' & y!='None' & group!='None'){
     mapping <- list(x=x,y=y,group=group)
@@ -111,6 +84,7 @@
   
   mapping <- mapping[!vapply(mapping, is.null, FUN.VALUE = logical(1))]
 
+  #4. Define Sym2 function---------------
   syms2 <- function(x) {
     lapply(
       X = x,
@@ -128,24 +102,21 @@
   
   df_name <- expr(!!sym(df_name) )
  
-  # Selecting column vs bar based on user input
+  #5. Selecting column vs bar based on user input-------------
   if(coordflip=='Bar'){ 
     hccall <- expr(hchart(. , type='bar' , !!hcaes_mappings)) } 
   else {
     hccall <- expr(hchart(. , type='column' , !!hcaes_mappings))
   }
-  
-  
   hccall <- expr(!!df_name %>% !!hccall)
   
   
-  
-  ##Legend Options
+  #6.Legend Options---------------
   legend <-expr(hc_legend(align = !!paste0(legendPos), verticalAlign = !!paste0(legendVerticalAlign), layout= !!paste0(legendLayout) , x = !!as.numeric(legendx), y = !!as.numeric(legendy)))
   hccall <- expr(!!hccall %>% !!legend)
   
   
-  ##Title Options
+  #7.Title Options--------------
   if(!is.null(title)){
     
   title <- expr(hc_title(text=!!paste0(title_text),
@@ -160,7 +131,10 @@
   
   
   
-  #Theme Options
+  #8. X & Y Axis Options---------
+  
+  
+  #8.Theme Options-----------
   if (!is.null(theme)) {
     theme <- tolower(theme)
     theme <- paste0("hc_theme_",theme)
@@ -170,8 +144,10 @@
     
   }
  
+  #9. Evaluating Final Code------------
   plot <- rlang::eval_tidy(hccall)
   
+  #10. Parsing Final Code-----------
   code <-  expr_deparse(hccall, width = 1e4)
   code <- stri_replace_all(str = code, replacement = "%>%\n", fixed = "%>%")
   ls <- list()
