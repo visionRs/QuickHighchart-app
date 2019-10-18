@@ -17,6 +17,7 @@ library(stringi)
 library(esquisse)
 library(highcharter)
 library(rlang)
+library(RColorBrewer)
 
 ui <- fluidPage(
 
