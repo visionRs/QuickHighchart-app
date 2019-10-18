@@ -36,7 +36,13 @@
                      title_align='center',
                      title_color='black',
                      title_font_weight="bold",
-                     title_useHTML=T
+                     title_useHTML=T,
+                     title_text_x =NULL, 
+                     title_x_opposite=NULL,
+                     title_x_plotline_text=NULL,
+                     title_x_plotline_color=NULL,
+                     title_x_plotline_width=1,
+                     title_x_plotline_value=NULL
                      ) {
   
   #1. Validation: Checking if data is null------------
@@ -132,8 +138,12 @@
   
   
   #8. X & Y Axis Options---------
-  if(!is.null(title_text_x) | !is.null(title_x_opposite)){
-    
+  plotline_vars <- c(title_text_x, title_x_opposite,
+                     title_x_plotline_color,title_x_plotline_width,
+                     title_x_plotline_value,title_x_plotline_text)
+
+  if(!any(is.null(plotline_vars))){
+
     hc_x_axis <- expr(hc_xAxis(title=list(text=!!paste0(title_text_x)),
                                opposite = !!as.logical(title_x_opposite),
                                plotLines = list(
@@ -145,11 +155,11 @@
                                  )
                                )
                       )
-    
+
     hccall <- expr(!!hccall %>% !!hc_x_axis)
-    
+
   }
-  
+
   
   #8.Theme Options-----------
   if (!is.null(theme)) {

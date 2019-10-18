@@ -157,6 +157,12 @@ Server <- function(input, output, session, data = NULL, dataModule = c("GlobalEn
                                title_margin = input$title_margin,
                                title_color = input$title_color,
                                title_useHTML = input$title_useHTML,
+                               title_text_x = input$title_text_x,
+                               title_x_opposite = input$title_x_opposite,
+                               title_x_plotline_color = input$title_x_plotline_color,
+                               title_x_plotline_width = input$title_x_plotline_width,
+                               title_x_plotline_value = input$title_x_plotline_value,
+                               title_x_plotline_text = input$title_x_plotline_text,
                                theme = input$theme)$plot,
            
            "Line"=.line_plot(data = dt,
@@ -174,6 +180,12 @@ Server <- function(input, output, session, data = NULL, dataModule = c("GlobalEn
                             title_margin = input$title_margin,
                             title_color = input$title_color,
                             title_useHTML = input$title_useHTML,
+                            title_text_x = input$title_text_x,
+                            title_x_opposite = input$title_x_opposite,
+                            title_x_plotline_color = input$title_x_plotline_color,
+                            title_x_plotline_width = input$title_x_plotline_width,
+                            title_x_plotline_value = input$title_x_plotline_value,
+                            title_x_plotline_text = input$title_x_plotline_text,
                             theme = input$theme)$plot,
            
            "Scatter"=.scatter_plot(data = dt,
@@ -191,6 +203,12 @@ Server <- function(input, output, session, data = NULL, dataModule = c("GlobalEn
                              title_margin = input$title_margin,
                              title_color = input$title_color,
                              title_useHTML = input$title_useHTML,
+                             title_text_x = input$title_text_x,
+                             title_x_opposite = input$title_x_opposite,
+                             title_x_plotline_color = input$title_x_plotline_color,
+                             title_x_plotline_width = input$title_x_plotline_width,
+                             title_x_plotline_value = input$title_x_plotline_value,
+                             title_x_plotline_text = input$title_x_plotline_text,
                              theme = input$theme)$plot
            
     )
@@ -220,7 +238,12 @@ Server <- function(input, output, session, data = NULL, dataModule = c("GlobalEn
                                                        title_margin = input$title_margin,
                                                        title_color = input$title_color,
                                                        title_useHTML = input$title_useHTML,
-                                                       
+                                                       title_text_x = input$title_text_x,
+                                                       title_x_opposite = input$title_x_opposite,
+                                                       title_x_plotline_color = input$title_x_plotline_color,
+                                                       title_x_plotline_width = input$title_x_plotline_width,
+                                                       title_x_plotline_value = input$title_x_plotline_value,
+                                                       title_x_plotline_text = input$title_x_plotline_text,
                                                        
                                                        theme = input$theme)$code)
            ) ,
@@ -240,6 +263,12 @@ Server <- function(input, output, session, data = NULL, dataModule = c("GlobalEn
                                                         title_margin = input$title_margin,
                                                         title_color = input$title_color,
                                                         title_useHTML = input$title_useHTML,
+                                                        title_text_x = input$title_text_x,
+                                                        title_x_opposite = input$title_x_opposite,
+                                                        title_x_plotline_color = input$title_x_plotline_color,
+                                                        title_x_plotline_width = input$title_x_plotline_width,
+                                                        title_x_plotline_value = input$title_x_plotline_value,
+                                                        title_x_plotline_text = input$title_x_plotline_text,
                                                         theme = input$theme)$code)
            ) ,
            
@@ -259,6 +288,12 @@ Server <- function(input, output, session, data = NULL, dataModule = c("GlobalEn
                                                          title_margin = input$title_margin,
                                                          title_color = input$title_color,
                                                          title_useHTML = input$title_useHTML,
+                                                         title_text_x = input$title_text_x,
+                                                         title_x_opposite = input$title_x_opposite,
+                                                         title_x_plotline_color = input$title_x_plotline_color,
+                                                         title_x_plotline_width = input$title_x_plotline_width,
+                                                         title_x_plotline_value = input$title_x_plotline_value,
+                                                         title_x_plotline_text = input$title_x_plotline_text,
                                                          theme = input$theme)$code)
            ) 
            

@@ -120,102 +120,144 @@ UI <- function( id,
      
         
         dropdownButton(
-          inputId = ns("legend_drpdwn"),
-          label = "Legend Options",
-          icon = icon("sliders"),
-          status = "success",
-          circle = FALSE, up=TRUE,
-          width = "100%",
-          radioGroupButtons(
-            inputId = ns("legendPos"), 
-            label = "Legend Align:",
-            choiceNames = list(
-              icon("arrow-left"), icon("align-center"),
-              icon("arrow-right")
-            ),
-            choiceValues = c("left", "center", "right"),
-            selected = "center",
-            justified = TRUE, 
-            size = "sm"
-          ),
-          radioGroupButtons(
-            inputId = ns("legendVerticalAlign"), 
-            label = "Legend Vertical Align:",
-            choiceNames = list(
-              icon("arrow-up"),icon("align-center"),
-              icon("arrow-down")
-            ),
-            choiceValues = c( "top", "middle","bottom"),
-            selected = "bottom",
-            justified = TRUE, 
-            size = "sm"
-          ),
-          radioGroupButtons(
-            inputId = ns("legendLayout"), 
-            label = "Legend Layout:",
-            choiceNames = list(
-              icon("arrows-alt-h"),
-              icon("arrows-alt-v"),icon('adjust')
-            ),
-            choiceValues = c( "horizontal", "vertical","proximate"),
-            selected = "horizontal",
-            justified = TRUE, 
-            size = "sm"
-          ),
-          numericInput(inputId = ns('legendx'),label = "x",value = 0,min = 0,max=100,step = 0.01),
-          numericInput(inputId = ns('legendy'),label = "y",value = 0,min = 0,max=100,step = 0.01)
+              inputId = ns("legend_drpdwn"),
+              label = "Legend Options",
+              icon = icon("sliders"),
+              status = "success",
+              circle = FALSE, up=TRUE,
+              width = "100%",
+              radioGroupButtons(
+                inputId = ns("legendPos"), 
+                label = "Legend Align:",
+                choiceNames = list(
+                  icon("arrow-left"), icon("align-center"),
+                  icon("arrow-right")
+                ),
+                choiceValues = c("left", "center", "right"),
+                selected = "center",
+                justified = TRUE, 
+                size = "sm"
+              ),
+              radioGroupButtons(
+                inputId = ns("legendVerticalAlign"), 
+                label = "Legend Vertical Align:",
+                choiceNames = list(
+                  icon("arrow-up"),icon("align-center"),
+                  icon("arrow-down")
+                ),
+                choiceValues = c( "top", "middle","bottom"),
+                selected = "bottom",
+                justified = TRUE, 
+                size = "sm"
+              ),
+              radioGroupButtons(
+                inputId = ns("legendLayout"), 
+                label = "Legend Layout:",
+                choiceNames = list(
+                  icon("arrows-alt-h"),
+                  icon("arrows-alt-v"),icon('adjust')
+                ),
+                choiceValues = c( "horizontal", "vertical","proximate"),
+                selected = "horizontal",
+                justified = TRUE, 
+                size = "sm"
+              ),
+              numericInput(inputId = ns('legendx'),label = "x",value = 0,min = 0,max=100,step = 0.01),
+              numericInput(inputId = ns('legendy'),label = "y",value = 0,min = 0,max=100,step = 0.01)
         ),
         
         dropdownButton(
-           inputId = ns("title_drpdwn"),
-           label = "Title Options",
-           icon = icon("heading"),
-           status = "success",
-           circle = FALSE, up=TRUE,
-           width = "100%",
-           textInput(inputId = ns("title_text"),label = "Title Text:",value = "",width = '100%'),
-           numericInput(inputId = ns('title_margin'),label = "Title Margin",value = 15,min = 0,max=100,step = 0.01),
-           radioGroupButtons(
-             inputId = ns("title_align"), 
-             label = "Title Align:",
-             choiceNames = list(
-               icon("arrow-left"), icon("align-center"),
-               icon("arrow-right")
-             ),
-             choiceValues = c("left", "center", "right"),
-             selected = "center",
-             justified = TRUE, 
-             size = "sm"
-           ),
-           spectrumInput(
-             inputId = ns('title_color'),
-             label = 'Title Color',
-             choices = list(
-               list('black', 'white', 'blanchedalmond', 'steelblue', 'forestgreen'),
-               as.list(brewer.pal(n = 9, name = "Blues")),
-               as.list(brewer.pal(n = 9, name = "Greens")),
-               as.list(brewer.pal(n = 11, name = "Spectral")),
-               as.list(brewer.pal(n = 8, name = "Dark2"))
-             ),
-             options = list(`toggle-palette-more-text` = "Show more"),
-             selected = 'black'
-           ),
-           radioGroupButtons(
-             inputId = ns("title_useHTML"), 
-             label = "Title HTML Use:",
-             choiceNames = list(
-               icon("check-circle"), icon("times-circle")
-             ),
-             choiceValues = c("TRUE", "FALSE"),
-             selected = "FALSE",
-             justified = TRUE, 
-             size = "sm"
-           )
+               inputId = ns("title_drpdwn"),
+               label = "Title Options",
+               icon = icon("heading"),
+               status = "success",
+               circle = FALSE, up=TRUE,
+               width = "100%",
+               textInput(inputId = ns("title_text"),label = "Title Text:",value = "",width = '100%'),
+               numericInput(inputId = ns('title_margin'),label = "Title Margin",value = 15,min = 0,max=100,step = 0.01),
+               radioGroupButtons(
+                 inputId = ns("title_align"), 
+                 label = "Title Align:",
+                 choiceNames = list(
+                   icon("arrow-left"), icon("align-center"),
+                   icon("arrow-right")
+                 ),
+                 choiceValues = c("left", "center", "right"),
+                 selected = "center",
+                 justified = TRUE, 
+                 size = "sm"
+               ),
+               spectrumInput(
+                 inputId = ns('title_color'),
+                 label = 'Title Color',
+                 choices = list(
+                   list('black', 'white', 'blanchedalmond', 'steelblue', 'forestgreen'),
+                   as.list(brewer.pal(n = 9, name = "Blues")),
+                   as.list(brewer.pal(n = 9, name = "Greens")),
+                   as.list(brewer.pal(n = 11, name = "Spectral")),
+                   as.list(brewer.pal(n = 8, name = "Dark2"))
+                 ),
+                 options = list(`toggle-palette-more-text` = "Show more"),
+                 selected = 'black'
+               ),
+               radioGroupButtons(
+                 inputId = ns("title_useHTML"), 
+                 label = "Title HTML Use:",
+                 choiceNames = list(
+                   icon("check-circle"), icon("times-circle")
+                 ),
+                 choiceValues = c("TRUE", "FALSE"),
+                 selected = "FALSE",
+                 justified = TRUE, 
+                 size = "sm"
+               )
 
-                       
-                    
-                       
-                       )
+            ),
+        
+        dropdownButton(
+          inputId = ns("hc_axis_drpdwn"),
+          label = "x Axis Options",
+          icon = icon("heading"),
+          status = "success",
+          circle = FALSE, up=TRUE,
+          width = "100%",
+          textInput(inputId = ns("title_text_x"),label = "Title Text for x axis:",value = "",width = '100%'),
+          radioGroupButtons(
+            inputId = ns("title_x_opposite"), 
+            label = "x Axis Title Opposite",
+            choiceNames = list(
+              icon("check-circle"), icon("times-circle")
+            ),
+            choiceValues = c("TRUE", "FALSE"),
+            selected = "FALSE",
+            justified = TRUE, 
+            size = "sm"
+          ),
+          textInput(inputId = ns("title_x_plotline_text"),label = "Label Text for x plotline axis:",value = "",width = '100%'),
+          spectrumInput(
+            inputId = ns('title_x_plotline_color'),
+            label = 'Plotline Label Color',
+            choices = list(
+              list('black', 'white', 'blanchedalmond', 'steelblue', 'forestgreen'),
+              as.list(brewer.pal(n = 9, name = "Blues")),
+              as.list(brewer.pal(n = 9, name = "Greens")),
+              as.list(brewer.pal(n = 11, name = "Spectral")),
+              as.list(brewer.pal(n = 8, name = "Dark2"))
+            ),
+            options = list(`toggle-palette-more-text` = "Show more"),
+            selected = 'black'
+          ),
+          numericInput(inputId = ns('title_x_plotline_width'),label = "Title Margin",value = 15,min = 0,max=100,step = 0.01),
+          numericInput(inputId = ns('title_x_plotline_value'),label = "Title Margin",value = 15,min = 0,max=100,step = 0.01)
+          
+          
+          
+          
+          
+          
+          
+        ) # End of hc x axis dropdown
+        
         
         
       ),
