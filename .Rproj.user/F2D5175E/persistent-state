@@ -1,4 +1,4 @@
-activeClientUrl="http://analyw0301:8787/s/5fc21b73f21ff445a198a/"
+activeClientUrl="http://analyw0301:8787/s/5fc21b73f21ff736cdd20/"
 build-last-errors="[]"
 build-last-errors-base-dir=""
 build-last-outputs="[]"
@@ -6,5 +6,5 @@ compile_pdf_state="{\"errors\":[],\"output\":\"\",\"running\":false,\"tab_visibl
 files.monitored-path=""
 find-in-files-state="{\"handle\":\"\",\"input\":\"\",\"path\":\"\",\"regex\":false,\"results\":{\"file\":[],\"line\":[],\"lineValue\":[],\"matchOff\":[],\"matchOn\":[]},\"running\":false}"
 imageDirtyState="1"
-portToken="689818cf4d4c"
+portToken="51fe5fa3ccd2"
 saveActionState="-1"
