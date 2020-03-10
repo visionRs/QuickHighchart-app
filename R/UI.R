@@ -1,3 +1,5 @@
+
+
 UI <- function( id, 
                 choose_data = TRUE, 
                 container=visionRContainer(fixed = T),
@@ -22,7 +24,9 @@ UI <- function( id,
   )
   
   output <- miniPage(
-    includeCSS("/home/rupatel/working_dir/projects/QuickHighChart/Modules/style.css"),
+    includeCSS(system.file("www",'style.css' ,package = "QuickHighchart")),
+    
+    #includeCSS("/Users/rushabh/Desktop/projects/QuickHighchart/Modules/style.css"),
     # singleton(x = tagList(
     #   tags$link(rel="stylesheet", type="text/css", href="/home/rupatel/working_dir/projects/QuickHighChart/Modules/style.css")
     # )),
