@@ -16,7 +16,18 @@
     border-color: #444444;
 }
 
+.btn-success {
+    color: #fff;
+    width: 100%;
+    background-color: #5cb85c;
+    border-color: #4cae4c;
+    padding-bottom:10px;
+}
 
+.sw-show.sw-dropdown-content {
+    display: block;
+    width: 100%;
+}
 .btn-danger.active, .btn-danger:active, .open>.dropdown-toggle.btn-danger {
     color: #fff;
     background-color: #444444;
