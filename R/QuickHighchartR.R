@@ -1,4 +1,4 @@
-QuickHighchart <- function(data = NULL,
+QuickHighchartR <- function(data = NULL,
                       viewer = "dialog") {
   
   
