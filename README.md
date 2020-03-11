@@ -15,7 +15,7 @@ The application can be launched via RStudio console, if you don't have `data.fra
 Below function should be executed to launch this app.
 
 ```r
-QuickHighchart()
+QuickHighchartR()
 
 ```
 
