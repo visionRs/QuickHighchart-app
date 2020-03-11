@@ -20,7 +20,7 @@ Quickplot()
 ```
 
 
-<img src="https://github.com/visionRs/ggQuickPlotR/blob/master/ggQuickPlotR-Demo.gif" width="1200" height="500" />
+<img src="https://github.com/visionRs/QuickHighchart-app/blob/master/Screen-Recording-2020-03-10-at-8.gif" width="1200" height="500" />
 
 
 
