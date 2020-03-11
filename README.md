@@ -7,15 +7,15 @@
 install development version from GitHub :
 
 ```r
-devtools::install_github("visionRs/ggQuickPlotR")
+devtools::install_github("visionRs/QuickHighchart-app")
 ```
 
-The application can be launched via RStudio console, if you don't have `data.frame` in your environment, datasets in `ggQuickPlotR` packges are used.
+The application can be launched via RStudio console, if you don't have `data.frame` in your environment, datasets in `QuickHighchart` packges are used.
 
 Below function should be executed to launch this app.
 
 ```r
-Quickplot()
+QuickHighchart()
 
 ```
 
