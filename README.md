@@ -1,4 +1,4 @@
-# QuickHighchart <img src="https://github.com/visionRs/QuickHighchart-app/blob/master/Picture1.png" width="180px" height="180px" align="right"/>
+# QuickHighchartR <img src="https://github.com/visionRs/QuickHighchart-app/blob/master/Picture1.png" width="180px" height="180px" align="right"/>
 > The purpose of this R library is to visualize your data on your tip without having any knowledge about javascript library Highchart R. This application will generate R code for your desired visualization.
 <br> 
 
@@ -7,7 +7,7 @@
 install development version from GitHub :
 
 ```r
-devtools::install_github("visionRs/QuickHighchart-app")
+devtools::install_github("visionRs/QuickHighchartR")
 ```
 
 The application can be launched via RStudio console, if you don't have `data.frame` in your environment, datasets in `QuickHighchart` packges are used.
