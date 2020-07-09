@@ -3,7 +3,7 @@
 <br> 
 
 ## Installation
-
+ 
 install development version from GitHub :
 
 ```r
